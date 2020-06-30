@@ -13,7 +13,8 @@ namespace ESGI.DesignPattern.Projet.Tests
         [Fact]
         public void Discount()
         {
-            var discount = new Discount();
+            var marketingCampaign = new MarketingCampaign(new DateTimeService(new DateTime()));
+            var discount = new Discount(marketingCampaign);
 
             var net = new Money(1002);
             var total = discount.DiscountFor(net);

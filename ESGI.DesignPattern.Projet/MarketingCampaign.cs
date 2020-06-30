@@ -7,16 +7,21 @@ namespace ESGI.DesignPattern.Projet
     // create interface
     public class MarketingCampaign
     {
+        private DateTimeService dateTimeService;
+
+        public MarketingCampaign(DateTimeService dateTimeService) {
+            this.dateTimeService = dateTimeService;
+        }
+
         public bool IsActive()
         {
-            return (long)DateTime.Now.TimeOfDay.TotalMilliseconds % 2 == 0;
+            return (long)this.dateTimeService.getDateTime().TimeOfDay.TotalMilliseconds % 2 == 0;
             // regle métier - à conserver - class ActivatinRule ?
         }
 
         public bool IsCrazySalesDay()
         {
-            return DateTime.Now.DayOfWeek.Equals(DayOfWeek.Friday);
-            // Encapsulate DateTime
+            return this.dateTimeService.getDateTime().DayOfWeek.Equals(DayOfWeek.Friday);
         }
     }
 }
