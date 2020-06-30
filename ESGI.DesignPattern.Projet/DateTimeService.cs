@@ -6,14 +6,14 @@ namespace ESGI.DesignPattern.Projet
 {
     public class DateTimeService
     {
-        private DateTime DateTime;
+        private DateTime dateTime;
 
         public DateTimeService(DateTime dateTime) {
-            this.DateTime = dateTime;
+            this.dateTime = dateTime;
         }
 
-        public DateTime getDateTime() {
-            return this.DateTime;
+        public DateTime GetDateTime() {
+            return this.dateTime;
         }
     }
 }

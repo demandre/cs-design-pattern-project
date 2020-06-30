@@ -15,13 +15,13 @@ namespace ESGI.DesignPattern.Projet
 
         public bool IsActive()
         {
-            return (long)this.dateTimeService.getDateTime().TimeOfDay.TotalMilliseconds % 2 == 0;
+            return (long)this.dateTimeService.GetDateTime().TimeOfDay.TotalMilliseconds % 2 == 0;
             // regle métier - à conserver - class ActivatinRule ?
         }
 
         public bool IsCrazySalesDay()
         {
-            return this.dateTimeService.getDateTime().DayOfWeek.Equals(DayOfWeek.Friday);
+            return this.dateTimeService.GetDateTime().DayOfWeek.Equals(DayOfWeek.Friday);
         }
     }
 }
