@@ -10,7 +10,7 @@ namespace ESGI.DesignPattern.Projet
         public bool IsActive()
         {
             return (long)DateTime.Now.TimeOfDay.TotalMilliseconds % 2 == 0;
-            // WTF : random - create a rule - pattern state ? overkill ?
+            // regle métier - à conserver - class ActivatinRule ?
         }
 
         public bool IsCrazySalesDay()
