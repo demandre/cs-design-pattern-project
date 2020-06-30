@@ -16,4 +16,19 @@ namespace ESGI.DesignPattern.Projet
             return DateTime.Now;
         }
     }
+
+    public class MockDateTimeService : IDateTimeService
+    {
+        private readonly DateTime _date;
+
+        public MockDateTimeService(DateTime date)
+        {
+            this._date = date;
+        }
+
+        public DateTime Now()
+        {
+            return _date;
+        }
+    }
 }
