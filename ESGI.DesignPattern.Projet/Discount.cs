@@ -4,6 +4,36 @@ using System.Runtime.Serialization;
 
 namespace ESGI.DesignPattern.Projet
 {
+    public interface IDiscount
+    {
+        Money DiscountFort(Money netPrice);
+    }
+
+    public class DiscountOneThousand : IDiscount
+    {
+        public Money DiscountFort(Money netPrice)
+        {
+            return netPrice.ReduceBy(10);
+        }
+    }
+
+    public class DiscountBlackFriday : IDiscount
+    {
+        public Money DiscountFort(Money netPrice)
+        {
+            return netPrice.ReduceBy(15);
+        }
+    }
+
+    public class DiscountOneHundred : IDiscount
+    {
+        public Money DiscountFort(Money netPrice)
+        {
+            return netPrice.ReduceBy(5);
+        }
+    }
+
+    // Old code
     public class Discount
     {
         private readonly MarketingCampaign marketingCampaign;
