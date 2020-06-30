@@ -5,6 +5,11 @@ namespace ESGI.DesignPattern.Projet.Tests
 {
     public class Tests
     {
+        // Test MarketingCampaign - activate, friday rule
+
+        // Test Money - factory ? transformation ?
+
+        // test discount using precedent refactos
         [Fact]
         public void Discount()
         {

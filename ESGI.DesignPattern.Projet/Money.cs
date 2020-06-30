@@ -4,6 +4,8 @@ using System.Runtime.Serialization;
 
 namespace ESGI.DesignPattern.Projet
 {
+    //create interface
+    //Money factory ? 
     public class Money
     {
         public static readonly Money OneThousand = new Money(1000);

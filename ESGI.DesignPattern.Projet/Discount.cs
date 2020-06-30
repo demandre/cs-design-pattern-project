@@ -8,12 +8,12 @@ namespace ESGI.DesignPattern.Projet
     {
         private readonly MarketingCampaign marketingCampaign;
 
-        public Discount()
+        public Discount() // pass IMarketingCampaign
         {
             this.marketingCampaign = new MarketingCampaign();
         }
 
-        public Money DiscountFor(Money netPrice)
+        public Money DiscountFor(Money netPrice) // pass IMoney
         {
             if (marketingCampaign.IsCrazySalesDay())
             {
