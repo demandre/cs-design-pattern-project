@@ -6,12 +6,12 @@ namespace ESGI.DesignPattern.Projet
 {
     public interface IDiscount
     {
-        Money DiscountFort(Money netPrice);
+        Money DiscountFor(Money netPrice);
     }
 
     public class DiscountOneThousand : IDiscount
     {
-        public Money DiscountFort(Money netPrice)
+        public Money DiscountFor(Money netPrice)
         {
             return netPrice.ReduceBy(10);
         }
@@ -19,7 +19,7 @@ namespace ESGI.DesignPattern.Projet
 
     public class DiscountBlackFriday : IDiscount
     {
-        public Money DiscountFort(Money netPrice)
+        public Money DiscountFor(Money netPrice)
         {
             return netPrice.ReduceBy(15);
         }
@@ -27,7 +27,7 @@ namespace ESGI.DesignPattern.Projet
 
     public class DiscountOneHundred : IDiscount
     {
-        public Money DiscountFort(Money netPrice)
+        public Money DiscountFor(Money netPrice)
         {
             return netPrice.ReduceBy(5);
         }
