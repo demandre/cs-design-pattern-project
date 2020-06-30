@@ -4,16 +4,16 @@ using System.Runtime.Serialization;
 
 namespace ESGI.DesignPattern.Projet
 {
-    public class DateTimeService
+    public interface IDateTimeService
     {
-        private DateTime dateTime;
+        DateTime Now();
+    }
 
-        public DateTimeService(DateTime dateTime) {
-            this.dateTime = dateTime;
-        }
-
-        public DateTime GetDateTime() {
-            return this.dateTime;
+    public class DateTimeService : IDateTimeService
+    {
+        public DateTime Now() 
+        {
+            return DateTime.Now;
         }
     }
 }
