@@ -74,7 +74,7 @@ namespace ESGI.DesignPattern.Projet.Tests
         }
         
         [Fact]
-        public void test_discount_one_hundred_on_cheap_item()
+        public void test_no_discount_on_cheap_item()
         {
             var marketingCampaign = new MarketingCampaign(
                 new MockDateTimeService(
