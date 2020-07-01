@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-
 namespace ESGI.DesignPattern.Projet
 {
-    // create interface
-    public class MarketingCampaign
+    public interface IMarketingCampaign
+    {
+        bool IsActive();
+        bool IsCrazySalesDay();
+    }
+    
+    public class MarketingCampaign : IMarketingCampaign
     {
         private IDateTimeService dateTimeService;
 
@@ -15,13 +19,12 @@ namespace ESGI.DesignPattern.Projet
 
         public bool IsActive()
         {
-            return (long)this.dateTimeService.Now().TimeOfDay.TotalMilliseconds % 2 == 0;
-            // regle métier - à conserver - class ActivatinRule ?
+            return (long)dateTimeService.Now().TimeOfDay.TotalMilliseconds % 2 == 0;
         }
 
         public bool IsCrazySalesDay()
         {
-            return this.dateTimeService.Now().DayOfWeek.Equals(DayOfWeek.Friday);
+            return dateTimeService.Now().DayOfWeek.Equals(DayOfWeek.Friday);
         }
     }
 }
