@@ -5,42 +5,35 @@ using System.Runtime.Serialization;
 namespace ESGI.DesignPattern.Projet
 {
 
-    public class DiscountCommmandFactory
+    public class DiscountFactory
     {
-        public static IDiscountCommand Create(IMarketingCampaign campaign, IMoney money)
+        public static IDiscount Create(IMarketingCampaign campaign, IMoney money)
         {
             if (campaign.IsCrazySalesDay())
             {
-                return new DiscountCommandCrazySalesDay();
+                return new DiscountCrazySalesDay();
             } 
             
             if (money.IsMoreThanOneThousand())
             {
-                return new DiscountCommandOneThousand();
+                return new DiscountOneThousand();
             }
             
             if (money.IsMoreThanOneHundred() && campaign.IsActive())
             {
-                return new DiscountCommandOneHundred();
+                return new DiscountOneHundred();
             }
 
-            return null;
-        }
-    }
-    public class DiscountCommandHandler
-    {
-        public static IMoney ApplyDiscount(IDiscountCommand discountCommand, IMoney money)
-        {
-            return discountCommand != null ? discountCommand.DiscountFor(money) : money;
+            return new DiscountNoDiscount();
         }
     }
 
-    public interface IDiscountCommand
+    public interface IDiscount
     {
         IMoney DiscountFor(IMoney netPrice);
     }
 
-    public class DiscountCommandOneThousand : IDiscountCommand
+    public class DiscountOneThousand : IDiscount
     {
         public IMoney DiscountFor(IMoney netPrice)
         {
@@ -48,7 +41,7 @@ namespace ESGI.DesignPattern.Projet
         }
     }
 
-    public class DiscountCommandCrazySalesDay : IDiscountCommand
+    public class DiscountCrazySalesDay : IDiscount
     {
         public IMoney DiscountFor(IMoney netPrice)
         {
@@ -56,11 +49,19 @@ namespace ESGI.DesignPattern.Projet
         }
     }
 
-    public class DiscountCommandOneHundred : IDiscountCommand
+    public class DiscountOneHundred : IDiscount
     {
         public IMoney DiscountFor(IMoney netPrice)
         {
             return netPrice.ReduceBy(5);
+        }
+    }
+
+    public class DiscountNoDiscount : IDiscount
+    {
+        public IMoney DiscountFor(IMoney netPrice)
+        {
+            return netPrice;
         }
     }
 }
