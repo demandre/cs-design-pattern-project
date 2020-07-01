@@ -14,10 +14,9 @@ namespace ESGI.DesignPattern.Projet.Tests
                 )
             );
             
-            var discountCommand = new DiscountCommand();
             var net = new Money(1002);
-
-            var total = discountCommand.ApplyDiscount(marketingCampaign, net);
+            var discountCommand = DiscountCommmandFactory.Create(marketingCampaign, net);
+            var total = DiscountCommandHandler.ApplyDiscount(discountCommand, net);
 
             Assert.Equal(new Money(901.8m), total);
         }
@@ -31,10 +30,9 @@ namespace ESGI.DesignPattern.Projet.Tests
                 )
             );
             
-            var discountCommand = new DiscountCommand();
             var net = new Money(102);
-
-            var total = discountCommand.ApplyDiscount(marketingCampaign, net);
+            var discountCommand = DiscountCommmandFactory.Create(marketingCampaign, net);
+            var total = DiscountCommandHandler.ApplyDiscount(discountCommand, net);
 
             Assert.Equal(new Money(96.9m), total);
         }
@@ -48,10 +46,9 @@ namespace ESGI.DesignPattern.Projet.Tests
                 )
             );
             
-            var discountCommand = new DiscountCommand();
             var net = new Money(100);
-
-            var total = discountCommand.ApplyDiscount(marketingCampaign, net);
+            var discountCommand = DiscountCommmandFactory.Create(marketingCampaign, net);
+            var total = DiscountCommandHandler.ApplyDiscount(discountCommand, net);
 
             Assert.Equal(new Money(85m), total);
         }
@@ -65,10 +62,9 @@ namespace ESGI.DesignPattern.Projet.Tests
                 )
             );
                         
-            var discountCommand = new DiscountCommand();
             var net = new Money(500);
-            
-            var total = discountCommand.ApplyDiscount(marketingCampaign, net);
+            var discountCommand = DiscountCommmandFactory.Create(marketingCampaign, net);
+            var total = DiscountCommandHandler.ApplyDiscount(discountCommand, net);
             
             Assert.Equal(new Money(500m), total);
         }
@@ -82,10 +78,9 @@ namespace ESGI.DesignPattern.Projet.Tests
                 )
             );
             
-            var discountCommand = new DiscountCommand();
             var net = new Money(80);
-
-            var total = discountCommand.ApplyDiscount(marketingCampaign, net);
+            var discountCommand = DiscountCommmandFactory.Create(marketingCampaign, net);
+            var total = DiscountCommandHandler.ApplyDiscount(discountCommand, net);
 
             Assert.Equal(new Money(80m), total);
         }
