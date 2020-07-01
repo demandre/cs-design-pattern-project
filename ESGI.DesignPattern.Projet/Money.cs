@@ -1,31 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace ESGI.DesignPattern.Projet
 {
-    //create interface
-    //Money factory ? 
-    public class Money
+    public interface IMoney
     {
-        public static readonly Money OneThousand = new Money(1000);
+        bool IsMoreThanOneThousand();
+        bool IsMoreThanOneHundred();
+        IMoney ReduceBy(int p);
+    }
+    
+    public class Money : IMoney
+    {
+        private static readonly Money OneThousand = new Money(1000);
+        private static readonly Money OneHundred = new Money(100);
+        
+        private readonly decimal _value;
 
-        public static readonly Money OneHundred = new Money(100);
+        public Money(int value) => _value = value;
 
-        private readonly decimal value;
+        public Money(decimal value) => _value = value;
 
-        public Money(int value) => this.value = value;
-
-        public Money(decimal value) => this.value = value;
-
-        public virtual Money ReduceBy(int p)
+        public bool IsMoreThanOneThousand()
         {
-            return new Money(value * (100m - p) / 100m);
+            return MoreThan(OneThousand);
         }
 
-        public virtual bool MoreThan(Money other)
+        public bool IsMoreThanOneHundred()
         {
-            return this.value.CompareTo(other.value) > 0;
+            return MoreThan(OneHundred);
+        }
+        
+        public IMoney ReduceBy(int p)
+        {
+            return new Money(_value * (100m - p) / 100m);
+        }
+
+        public bool MoreThan(Money other)
+        {
+            return _value.CompareTo(other._value) > 0;
         }
 
         public override bool Equals(object other)
@@ -34,18 +49,22 @@ namespace ESGI.DesignPattern.Projet
             {
                 return true;
             }
-            if (ReferenceEquals(null, other) || other.GetType() != this.GetType())
+            if (ReferenceEquals(null, other) || other.GetType() != GetType())
             {
                 return false;
             }
             var that = (Money)other;
-            return this.value.Equals(that.value);
+            return _value.Equals(that._value);
         }
 
         public override int GetHashCode()
         {
-            return value.GetHashCode();
+            return _value.GetHashCode();
         }
 
+        public override string ToString()
+        {
+            return _value.ToString(CultureInfo.InvariantCulture);
+        }
     }
 }
