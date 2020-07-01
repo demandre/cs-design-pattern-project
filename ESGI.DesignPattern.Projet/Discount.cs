@@ -4,35 +4,43 @@ using System.Runtime.Serialization;
 
 namespace ESGI.DesignPattern.Projet
 {
-    public class DiscountCommand
-    {
-        public IMoney ApplyDiscount(IMarketingCampaign campaign, IMoney money)
-        {
-            IDiscount discount = null;
 
+    public class DiscountCommmandFactory
+    {
+        public static IDiscountCommand Create(IMarketingCampaign campaign, IMoney money)
+        {
             if (campaign.IsCrazySalesDay())
             {
-                discount = new DiscountCrazySalesDay();
+                return new DiscountCommandCrazySalesDay();
             } 
-            else if (money.IsMoreThanOneThousand())
+            
+            if (money.IsMoreThanOneThousand())
             {
-                discount = new DiscountOneThousand();
+                return new DiscountCommandOneThousand();
             }
-            else if (money.IsMoreThanOneHundred() && campaign.IsActive())
+            
+            if (money.IsMoreThanOneHundred() && campaign.IsActive())
             {
-                discount = new DiscountOneHundred();
+                return new DiscountCommandOneHundred();
             }
 
-            return discount != null ? discount.DiscountFor(money) : money;
+            return null;
+        }
+    }
+    public class DiscountCommandHandler
+    {
+        public static IMoney ApplyDiscount(IDiscountCommand discountCommand, IMoney money)
+        {
+            return discountCommand != null ? discountCommand.DiscountFor(money) : money;
         }
     }
 
-    public interface IDiscount
+    public interface IDiscountCommand
     {
         IMoney DiscountFor(IMoney netPrice);
     }
 
-    public class DiscountOneThousand : IDiscount
+    public class DiscountCommandOneThousand : IDiscountCommand
     {
         public IMoney DiscountFor(IMoney netPrice)
         {
@@ -40,7 +48,7 @@ namespace ESGI.DesignPattern.Projet
         }
     }
 
-    public class DiscountCrazySalesDay : IDiscount
+    public class DiscountCommandCrazySalesDay : IDiscountCommand
     {
         public IMoney DiscountFor(IMoney netPrice)
         {
@@ -48,7 +56,7 @@ namespace ESGI.DesignPattern.Projet
         }
     }
 
-    public class DiscountOneHundred : IDiscount
+    public class DiscountCommandOneHundred : IDiscountCommand
     {
         public IMoney DiscountFor(IMoney netPrice)
         {
