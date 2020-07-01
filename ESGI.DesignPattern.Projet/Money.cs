@@ -64,7 +64,7 @@ namespace ESGI.DesignPattern.Projet
 
         public override string ToString()
         {
-            return _value.ToString(CultureInfo.InvariantCulture);
+            return $"Valeur : {_value}";
         }
     }
 }
