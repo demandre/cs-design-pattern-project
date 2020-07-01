@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+
 namespace ESGI.DesignPattern.Projet
 {
     public interface IMarketingCampaign
